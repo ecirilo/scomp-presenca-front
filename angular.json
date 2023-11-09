@@ -64,7 +64,8 @@
               "browserTarget": "secomp-presenca-front:build:production"
             },
             "development": {
-              "browserTarget": "secomp-presenca-front:build:development"
+              "browserTarget": "secomp-presenca-front:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

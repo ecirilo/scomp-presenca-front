@@ -3,50 +3,32 @@
       (ngSubmit)="onSave()">
   <div class="space-y-10">
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="button" mat-button [routerLink]="['/palestras']">Cancelar</button>
+      <button type="button" mat-button [routerLink]="['/alunos']">Cancelar</button>
       <button type="submit" mat-raised-button color="primary">Salvar</button>
     </div>
     <div class="border-b border-gray-900/10 pb-12">
       <h2 class="text-base font-semibold leading-7 text-gray-900">Palestra</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600">Inclua as informações sobre a palestra que fará parte da programação da Secomp.</p>
+      <p class="mt-1 text-sm leading-6 text-gray-600">Inclua as informações sobre o Aluno.</p>
 
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="col-span-full">
           <mat-form-field class="w-full">
-            <mat-label>Título</mat-label>
+            <mat-label>Nome</mat-label>
             <input matInput type="text"
                    name="nome"
                    formControlName="nome">
           </mat-form-field>
-          <p class="mt-0 text-sm leading-6 text-gray-600">Titulo da palestra.</p>
+          <p class="mt-0 text-sm leading-6 text-gray-600">Nome do aluno.</p>
         </div>
 
         <div class="col-span-full">
           <mat-form-field class="w-full">
-            <mat-label>Descrição</mat-label>
-            <textarea matInput
-                      cdkTextareaAutosize
-                      #autosize="cdkTextareaAutosize"
-                      cdkAutosizeMinRows="7"
-                      cdkAutosizeMaxRows="7"
-                      nome="descricao"
-                      formControlName="descricao"></textarea>
+            <mat-label>Matricula</mat-label>
+            <input matInput type="text"
+                   name="matricula"
+                   formControlName="matricula">
           </mat-form-field>
-          <p class="mt-0 text-sm leading-6 text-gray-600">Descrição da palestra.</p>
-        </div>
-
-        <div class="col-span-full">
-          <mat-form-field class="example-form-field">
-            <mat-label>Horário</mat-label>
-            <input matInput
-                   type="datetime"
-                   nome="horario"
-                   formControlName="horario"
-                   [matDatepicker]="picker">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <p class="mt-0 text-sm leading-6 text-gray-600">Horário da palestra.</p>
+          <p class="mt-0 text-sm leading-6 text-gray-600">Matricula do aluno.</p>
         </div>
 
         <div class="col-span-full">

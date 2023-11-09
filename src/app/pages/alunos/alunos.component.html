@@ -1,0 +1,41 @@
+<div class="mb-10">
+  <div class="flex justify-end mb-10">
+    <button mat-raised-button color="primary" [routerLink]="['/aluno', '']">Novo Aluno</button>
+  </div>
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-cell">ID</th>
+        <td mat-cell *matCellDef="let item" class="mat-cell">{{ item.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="matricula">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-cell">Matricula</th>
+        <td mat-cell *matCellDef="let item" class="mat-cell">{{ item.matricula }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-cell">Nome</th>
+        <td mat-cell *matCellDef="let item" class="mat-cell">{{ item.nome }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef class="mat-header-cell"></th>
+        <td mat-cell *matCellDef="let item" class="mat-cell">
+          <button mat-icon-button [routerLink]="['/aluno', item.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button
+                  [swal]="{ title: 'Quer mesmo apagar o Aluno?', showCancelButton: true }"
+                  (confirm)="onDelete(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</div>

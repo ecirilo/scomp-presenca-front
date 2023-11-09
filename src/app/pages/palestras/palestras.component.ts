@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TPalestra} from "../../model/palestra.model";
+import {PalestraService} from "../../services/palestra.service";
+import {HttpResponse} from "@angular/common/http";
+import {BehaviorSubject, concatMap} from "rxjs";
 
 @Component({
   selector: 'app-palestras',
   templateUrl: './palestras.component.html',
   styleUrls: ['./palestras.component.css']
 })
-export class PalestrasComponent {
-  displayedColumns: string[] = ['titulo', 'descricao', 'horario', 'palestrante', 'acoes'];
-  dataSource = [
-    {
-      titulo: 'Além dos Códigos',
-      descricao: 'Você já esteve em uma palestra SECOMP onde se sentiu perdido, como se estivessem falando em outra língua?',
-      horario: '30/08 - 13:15'
-    },
-    {
-      titulo: 'O Uso de Inteligência Artificial na Manutenção Industrial',
-      descricao: 'Esta palestra oferece uma abordagem a fim de se conhecer e otimizar operações de manutenção e se destacar no mercado.',
-      horario: '30/08 - 16:00'
-    },
-  ];
+export class PalestrasComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'titulo', 'descricao', 'horario', 'acoes'];
+  dataSource: TPalestra[] = [];
+
+  constructor(
+    private palestraService: PalestraService
+  ) {}
+
+  ngOnInit(): void {
+    this.palestraService.query().subscribe((_response: HttpResponse<TPalestra[]>): void => {
+      this.dataSource = _response.body ?? [];
+    });
+  }
+
+  onDelete(palestra: TPalestra): void {
+    this.palestraService.delete(palestra.id)
+      .subscribe((_response: HttpResponse<void>): void => {
+        this.dataSource = this.dataSource.filter((p: TPalestra): boolean => p.id !== palestra.id);
+    });
+  }
 }
