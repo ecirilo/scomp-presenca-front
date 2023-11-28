@@ -7,22 +7,33 @@ import {PalestraRoutingResolveService} from "./pages/palestra/route-routing-reso
 import {AlunosComponent} from "./pages/alunos/alunos.component";
 import {AlunoComponent} from "./pages/aluno/aluno.component";
 import {AlunoRoutingResolveService} from "./pages/aluno/route-routing-resolve.service";
+import {LoginComponent} from "./pages/login/login.component";
+import {AuthGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'palestras', component: PalestrasComponent },
-  { path: 'palestra/:id',
-    component: PalestraComponent,
-    resolve: {
-      palestra: PalestraRoutingResolveService,
-    }
-  },
-  { path: 'alunos', component: AlunosComponent },
-  { path: 'aluno/:id',
-    component: AlunoComponent,
-    resolve: {
-      aluno: AlunoRoutingResolveService,
-    }
+  { path: 'login', component: LoginComponent },
+  { path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'palestras',
+        component: PalestrasComponent
+      },
+      { path: 'palestra/:id',
+        component: PalestraComponent,
+        resolve: {
+          palestra: PalestraRoutingResolveService,
+        }
+      },
+      { path: 'alunos', component: AlunosComponent },
+      {
+        path: 'aluno/:id',
+        component: AlunoComponent,
+        resolve: {
+          aluno: AlunoRoutingResolveService,
+        }
+      }
+    ]
   },
 ];
 

@@ -4,7 +4,10 @@
   <div class="space-y-10">
     <div class="mt-6 flex items-center justify-end gap-x-6">
       <button type="button" mat-button [routerLink]="['/palestras']">Cancelar</button>
-      <button type="submit" mat-raised-button color="primary">Salvar</button>
+      <button mat-raised-button
+              type="submit"
+              color="primary"
+              data-pw="btnSalvar">Salvar</button>
     </div>
     <div class="border-b border-gray-900/10 pb-12">
       <h2 class="text-base font-semibold leading-7 text-gray-900">Palestra</h2>
@@ -29,7 +32,7 @@
                       #autosize="cdkTextareaAutosize"
                       cdkAutosizeMinRows="7"
                       cdkAutosizeMaxRows="7"
-                      nome="descricao"
+                      name="descricao"
                       formControlName="descricao"></textarea>
           </mat-form-field>
           <p class="mt-0 text-sm leading-6 text-gray-600">Descrição da palestra.</p>
@@ -40,7 +43,7 @@
             <mat-label>Horário</mat-label>
             <input matInput
                    type="datetime"
-                   nome="horario"
+                   name="horario"
                    formControlName="horario"
                    [matDatepicker]="picker">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>

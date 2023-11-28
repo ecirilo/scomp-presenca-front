@@ -9,18 +9,21 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTableModule} from "@angular/material/table";
-import { PalestraComponent } from './pages/palestra/palestra.component';
+import {PalestraComponent} from './pages/palestra/palestra.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import { HomeComponent } from './home/home.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HomeComponent} from './home/home.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatetimePipe} from "./shaded/datetime.pipe";
 import {AlunosComponent} from "./pages/alunos/alunos.component";
 import {AlunoComponent} from "./pages/aluno/aluno.component";
+import {AuthInterceptor} from "./auth/auth.interceptor";
+import {LoginComponent} from "./pages/login/login.component";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import {AlunoComponent} from "./pages/aluno/aluno.component";
     PalestraComponent,
     AlunosComponent,
     AlunoComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +51,14 @@ import {AlunoComponent} from "./pages/aluno/aluno.component";
     MatDatepickerModule,
     MatNativeDateModule,
     SweetAlert2Module.forRoot(),
-    DatetimePipe
+    DatetimePipe,
+    MatCardModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

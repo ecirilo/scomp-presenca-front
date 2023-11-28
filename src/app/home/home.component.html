@@ -1,1 +1,11 @@
-<h1>Home</h1>
+<mat-toolbar color="primary" class="p-4">
+  <a routerLink="/">Secomp</a>
+  <span class="flex justify-center w-full">
+    <a routerLink="palestras">Palestras</a>
+    <a class="ml-5" routerLink="alunos">Alunos</a>
+    <a class="ml-5" (click)="onLogout()">Logout</a>
+  </span>
+</mat-toolbar>
+<div class="flex justify-center items-start h-screen mx-10 my-10">
+  <router-outlet></router-outlet>
+</div>

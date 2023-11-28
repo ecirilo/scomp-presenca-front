@@ -43,8 +43,6 @@ export class AlunoComponent {
   }
 
   private updateFrom(aluno: TAluno): void {
-    console.log("-----------------------------------")
-    console.log(aluno);
     this.editForm.patchValue({
       id: aluno.id,
       nome: aluno.nome,
